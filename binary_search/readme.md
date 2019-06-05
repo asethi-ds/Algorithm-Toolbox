@@ -17,11 +17,11 @@ T(N) = T(N/2) + O(N) = ... = O(N + N/2 + N/4 + ...) + T(1) ~= O(2N) = O(N)
 
 #### Primer
 * Plain vanilla binary search while loop [[704](704_binary_search.py)].
-* Plain vanilla binary search recursion [[457](457_Classical_Binary_Search.py)].
-* Plain vanilla binary search for insert position [[35](35_Search_Insert_Position.py)].
+* Plain vanilla binary search recursion [[457](457_classical_binary_search.py)].
+* Plain vanilla binary search for insert position [[35](35_search_insert_position.py)].
 
 #### Application
-* XXOO: Find point of change (first occurrence of a new series) [[278](278_First_Bad_Version.py)].
+* XXOO: Find point of change (first occurrence of a new series) [[278](278_first_bad_version.py)].
 * XXOO: Find minimum in a rotated array (first bad version logic) [[minimim_in_rotated_array.py](minimim_in_rotated_array.py)].
 * Half-half: Search in rotated sorted array [[33](33_search_in_rotated_sorted_array.py)].
 * Half-half: Find peak index in a mountain array. Apply logic, not template [[852](852_peak_index_in_a_mountain_array.py)].
