@@ -16,7 +16,7 @@ T(N) = T(N/2) + O(N) = ... = O(N + N/2 + N/4 + ...) + T(1) ~= O(2N) = O(N)
 * Find last occurrence of change [[last_occurence.py](last_occurence.py)].
 
 #### Primer
-* Plain vanilla binary search while loop [[704](704_Binary_Search.py)].
+* Plain vanilla binary search while loop [[704](704_binary_search.py)].
 * Plain vanilla binary search recursion [[457](457_Classical_Binary_Search.py)].
 * Plain vanilla binary search for insert position [[35](35_Search_Insert_Position.py)].
 
