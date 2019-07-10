@@ -53,6 +53,60 @@ def inorderTraversal(self, root):
 
         cur = cur.right
     return result
+
+def postorderTraversal(self, root):
+    """
+    Do not insert.
+    Flip array in the end instead.
+    """
+    if not root:
+        return []
+    stack = [root]
+    ans = []
+    while stack:
+        u = stack.pop()
+
+        ans.append(u.val)
+
+        # add left child first
+        if u.left:
+            stack.append(u.left)
+        if u.right:
+            stack.append(u.right)
+    return ans[::-1]
+```
+
+```Python
+# simpler iterative algorithm, with extra space cost O(N) for flag
+def traverse(self, root: TreeNode) -> List[int]:
+    """
+    Edge case:
+        when input is null
+        when child node is null
+    """
+    ans = []
+    if not root: return ans
+    stack = [(root, False)]
+    while stack:
+        node, ready = stack.pop()
+        if ready:
+            ans.append(node.val)
+        else:
+            # preorder
+            if node.right: stack.append((node.right, False))
+            if node.left: stack.append((node.left, False))
+            stack.append((node, True))
+
+            # in-order
+            # if node.right: stack.append((node.right, False))
+            # stack.append((node, True))
+            # if node.left: stack.append((node.left, False))
+
+            # post-order
+            # stack.append((node, True))
+            # if node.right: stack.append((node.right, False))
+            # if node.left: stack.append((node.left, False))
+    return ans
 ```
 
 
@@ -116,7 +170,7 @@ def divideConquerTraversal(self, root):
 * Minimum subtree (DC) [[Link](https://starllap.space/2017/05/30/LintCode-596-Minimum-Subtree/)][[Code](minimum_subtree.py)].
 
 #### Application
-* Balanced binary tree [[Link](https://leetcode.com/problems/balanced-binary-tree/)][[Code](110_balanced_binary_tree)].
+* Balanced binary tree [[Link](https://leetcode.com/problems/balanced-binary-tree/)][[Code](110_balanced_binary_tree.py)].
 * Tuple return: binary tree maximum node [[Link](https://www.lintcode.com/problem/binary-tree-maximum-node/description)][[Code](binary_tree_maximum_node.py)].
 * Flatten binary tree to linked list [[Link](https://leetcode.com/problems/flatten-binary-tree-to-linked-list/submissions/)][[114](114_flatten_binary_tree_to_linked_list.py)]
 * **Lowest common ancestor** [[Link](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/submissions/)][[Code](236_lowest_common_ancestor_of_a_binary_tree.py)]

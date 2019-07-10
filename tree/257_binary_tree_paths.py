@@ -67,8 +67,37 @@ class Solution(object):
             if not node.left and not node.right:
                 # use list() method to create a copy
                 self.ans.append(list(tmp))
+                return # optional
             dfs(node.left, tmp)
             dfs(node.right, tmp)
+
+            # remove current node before backtrack
+            # the list is passed by reference, and changes will be reflected in earlier call
+            tmp.pop()
+
+        dfs(root, [])
+        return ["->".join([str(i) for i in l]) for l in self.ans]
+
+    # arm-length recursion
+    def binaryTreePaths3(self, root: TreeNode) -> List[str]:
+        self.ans = []
+        def dfs(node, tmp):
+            # by adding the following line, the base case is never reached
+            if not node:
+                # still need to handle edge case, root = None
+                print("Reached None")
+                return
+
+            # is leaf node if has neither left nor right child
+            tmp.append(node.val)
+            if not node.left and not node.right:
+                # use list() method to create a copy
+                self.ans.append(list(tmp))
+                tmp.pop() # arm-length recursion
+                return # arm-length recursion
+
+            if node.left: dfs(node.left, tmp) # arm-length recursion
+            if node.right: dfs(node.right, tmp) # arm-length recursion
 
             # remove current node before backtrack
             # the list is passed by reference, and changes will be reflected in earlier call

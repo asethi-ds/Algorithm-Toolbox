@@ -1,4 +1,4 @@
-import Tree
+from tree import Tree
 
 def countNotes(root):
     """
@@ -10,7 +10,7 @@ def countNotes(root):
         return 1 + helper(node.left) + helper(node.right)
     return helper(root)
 
-root = Tree.Tree([2,1,3,None,4,None,7]).root
+root = Tree([2,1,3,None,4,None,7]).root
 print(countNotes(root))
 
 class Solution():
@@ -34,7 +34,7 @@ class Solution():
         return self.subtree, self.ans
 
 treeVals = [5, 4, 8, 11, None, 13, 4, 7, 2, None, None, None, None, None, 1]
-root = Tree.Tree(treeVals).root
+root = Tree(treeVals).root
 
 solver = Solution()
 subtree, count = solver.minimumSubtree(root)
