@@ -1,6 +1,6 @@
-import Tree
+from tree import Tree
 treeVals = [3, 9, 20, None, None, 15, 7]
-tree = Tree.Tree(treeVals)
+tree = Tree(treeVals)
 root = tree.root
 
 class Solution():
@@ -27,6 +27,23 @@ class Solution():
 
         helper(root)
         return self.ans
+
+# without using class property: return tuple instead
+class Solution2:
+    def isBalanced(self, root: TreeNode) -> bool:
+        def helper(node):
+            if not node:
+                return 0, True
+
+            leftDepth, leftBalanced = helper(node.left)
+            rightDepth, rightBalanced = helper(node.right)
+            depth = max(leftDepth, rightDepth) + 1
+
+            if abs(leftDepth - rightDepth) > 1:
+                return depth, False
+
+            return depth, leftBalanced and rightBalanced
+        return helper(root)[1]
 
 solver = Solution()
 print(solver.isBalanced(root))

@@ -171,7 +171,7 @@ def divideConquerTraversal(self, root):
 
 #### Application
 * Balanced binary tree [[Link](https://leetcode.com/problems/balanced-binary-tree/)][[Code](110_balanced_binary_tree.py)].
-* Tuple return: binary tree maximum node [[Link](https://www.lintcode.com/problem/binary-tree-maximum-node/description)][[Code](binary_tree_maximum_node.py)].
+* Tuple return: binary tree maximum average [[Link](https://www.lintcode.com/problem/subtree-with-maximum-average/description)][[Code](binary_tree_maximum_average.py)].
 * Flatten binary tree to linked list [[Link](https://leetcode.com/problems/flatten-binary-tree-to-linked-list/submissions/)][[114](114_flatten_binary_tree_to_linked_list.py)]
 * **Lowest common ancestor** [[Link](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/submissions/)][[Code](236_lowest_common_ancestor_of_a_binary_tree.py)]
 * Longest consecutive sequence in tree [[Link]()]
