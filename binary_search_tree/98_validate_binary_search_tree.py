@@ -52,14 +52,8 @@ class Solution(object):
     #
     #     return inOrder(root)
 
-    def isValidBSTRec(self, root, lessThan=float('inf'), largerThan=float('-inf')):
-        if not root:
-            return True
-        if root.val <= largerThan or root.val >= lessThan:
-            return False
-        return self.isValidBST(root.left, root.val, largerThan) and \
-               self.isValidBST(root.right, lessThan, root.val)
 
+class Solution:
     def isValidBSTStack(self, root):
         result, stack = [], [(root, False)]
         while stack:
@@ -74,6 +68,41 @@ class Solution(object):
                     stack.append((cur, True))
                     stack.append((cur.left, False))
         return True
+
+class Solution:
+    """
+    Iterative in-order traversal
+    """
+    def isValidBST(self, root):
+        path, stack = [], []
+        node = root
+        while stack or node:
+            while node:
+                stack.append(node)
+                node = node.left
+
+            node = stack.pop()
+            if path and node.val <= path[-1].val:
+                return False
+            path.append(node)
+
+            node = node.right
+
+        return True
+
+class Solution:
+    def isValidBST(self, root: TreeNode) -> bool:
+        def isValidBSTRec(root, lower=float('-inf'), upper=float('inf')):
+            if not root:
+                return True
+            # valid: lower < root.val < upper
+            if root.val <= lower or root.val >= upper:
+                return False
+            return isValidBSTRec(root.left, lower, root.val) and \
+                   isValidBSTRec(root.right, root.val, upper)
+
+        return isValidBSTRec(root)
+
 treeVals = [2, 1, 3]
 # treeVals = []
 tree = Tree.Tree(treeVals)

@@ -21,6 +21,7 @@ class Solution(object):
             if not node:
                 return
 
+            # pre-order traversal, when reaching an ancestor, do not go further
             if p.val <= node.val <= q.val:
                 self.lca = node
                 return
@@ -28,20 +29,20 @@ class Solution(object):
             self.lowestCommonAncestor(node.left, p, q)
             self.lowestCommonAncestor(node.right, p, q)
 
-        if p.val > q.val:
-            p, q = q, p
+        if p.val > q.val: p, q = q, p
         helper(root, p, q)
         return self.lca
 
     # clean code for study
     def lowestCommonAncestor2(self, root, p, q):
-        if (max(p.val, q.val) < root.val):
+        if max(p.val, q.val) < root.val: # too large, go left
             return self.lowestCommonAncestor(root.left, p, q)
-        elif (min(p.val, q.val) > root.val):
+        elif min(p.val, q.val) > root.val: # too small, go right
             return self.lowestCommonAncestor(root.right, p, q)
         else:
             return root
 
+    # same logic, iterative
     def lowestCommonAncestorIter(self, root, p, q):
         while root:
             if root.val > p.val and root.val > q.val:
@@ -49,4 +50,7 @@ class Solution(object):
             elif root.val < p.val and root.val < q.val:
                 root = root.right
             else:
+                # p <= root.val < q
+                # or p < root.val <= q
+                # or p < root.val < q
                 return root

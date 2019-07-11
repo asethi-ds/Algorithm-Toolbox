@@ -1,3 +1,6 @@
+from tree import Tree
+root = Tree([4, 2, 5, 1, 3]).root
+
 """
 # Definition for a Node.
 class Node(object):
@@ -6,7 +9,38 @@ class Node(object):
         self.left = left
         self.right = right
 """
-class Solution(object):
+
+class SolutionStack(object):
+    def treeToDoublyList(self, root: 'Node') -> 'Node':
+        """
+        Note tht head points to smallest element, not root node of BST
+        :param root:
+        :return:
+        """
+        if not root: return
+        # do in-order traversal, use a lagging variable to keep track of previous node
+        head, prev, cur = None, None, root
+        stack = []
+        while stack or cur:
+            while cur:
+                stack.append(cur)
+                cur = cur.left
+
+            cur = stack.pop()
+            if prev:
+                # splice with previous node
+                prev.right, cur.left = cur, prev
+            else:
+                head = cur
+
+            prev = cur
+
+            cur = cur.right
+
+        head.left, prev.right = prev, head
+        return head
+
+class SolutionStack2(object):
     # stack solution, modified from in-order traversal
     def treeToDoublyList(self, root):
         """
@@ -20,8 +54,8 @@ class Solution(object):
         prev = None
         head = None
         while stack:
-            cur, visited = stack.pop()
-            if visited:
+            cur, ready = stack.pop()
+            if ready:
                 if prev:
                     prev.right = cur
                     cur.left = prev
@@ -38,6 +72,11 @@ class Solution(object):
         cur.right = head
         return head
 
+solver = SolutionStack2()
+head = solver.treeToDoublyList(root)
+print(head.val)
+
+class SolutionStackRec(object):
     # recursive solution
     def treeToDoublyListRec(self, root):
 
