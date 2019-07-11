@@ -46,6 +46,8 @@ class Solution(object):
         def find(node):
             if node is None:
                 return
+
+            # meet leaf
             if node.left is None and node.right is None:
                 if sum1 == sum(tmp) + node.val:
                     tmp.append(node.val)
@@ -59,10 +61,12 @@ class Solution(object):
                 recurse
                 undo something
             """
+            # go left
             tmp.append(node.val)
             find(node.left)
             tmp.pop()
 
+            # go right
             tmp.append(node.val)
             find(node.right)
             tmp.pop()

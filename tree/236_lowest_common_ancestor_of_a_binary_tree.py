@@ -1,4 +1,61 @@
 class Solution:
+    """
+    input: 2, 4
+          0
+         /
+        1
+       / \
+      2   3
+         /
+        4
+
+    ___ root = 0
+    |
+
+    ___ root = 1
+    |L
+
+    ___ root = 2
+    |LL return 2
+
+    ___ root = 1
+    |L
+    l = 2
+
+    ___ root = 3
+    |LR
+
+    ___ root = 4
+    |LRL return 4
+
+    ___ root = None
+    |LRR return None
+
+    ___ root = 3
+    |LR
+    l = 4
+    r = None
+    return 4
+
+    ___ root = 1
+    |L
+    l = 2
+    r = 4
+    found LCA, return 1
+
+    ___ root = 0
+    |
+    l = 4
+
+    ___ root = None
+    |R return None
+
+    ___ root = 0
+    |
+    l = 4
+    r = None
+    return l = 4
+    """
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         """
         Divide and conquer.

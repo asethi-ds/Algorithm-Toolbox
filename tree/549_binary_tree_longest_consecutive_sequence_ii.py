@@ -1,19 +1,10 @@
-# Definition for a binary tree node.
-# class TreeNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-
 class Solution(object):
-    def __init__(self):
-        self.ans = 0
-
     def longestConsecutive(self, root):
         """
         :type root: TreeNode
         :rtype: int
         """
+        self.ans = 0
 
         def traverse(node):
             if not node:
@@ -22,26 +13,27 @@ class Solution(object):
             inc = 1
             dec = 1
             if node.left:
-                l = traverse(node.left)
+                l_inc, l_dec = traverse(node.left)
                 if node.val == node.left.val + 1:
-                    dec = l[1] + 1
+                    dec = l_dec + 1
                 elif node.val == node.left.val - 1:
-                    inc = l[0] + 1
+                    inc = l_inc + 1
 
             if node.right:
-                r = traverse(node.right)
+                r_inc, r_dec = traverse(node.right)
                 if node.val == node.right.val + 1:
-                    dec = max(dec, r[1] + 1)
+                    dec = max(dec, r_dec + 1)
                 elif node.val == node.right.val - 1:
-                    inc = max(inc, r[0] + 1)
+                    inc = max(inc, r_inc + 1)
 
+            # do not double count curret node
+            # note that if no condition is met, streak is 1
             self.ans = max(self.ans, dec + inc - 1)
-
-            return [inc, dec]
+            return inc, dec
         traverse(root)
         return self.ans
 
-import Tree
+from tree import Tree
 
  #     3
  #    / \
