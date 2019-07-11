@@ -1,7 +1,4 @@
-import Tree
-treeVals = [1, 2, 3, 4, 5, 6]
-tree = Tree.Tree(treeVals)
-root = tree.root
+from tree import Tree
 
 class Solution(object):
     def inorderTraversal(self, root):
@@ -110,8 +107,45 @@ class Solution(object):
                     stack.append((cur.left, False))
         return result
 
+    def inorderTraversalMorris(self, root):
+        """
+        Edge case:
+            when input is null
+            when child node is null
+        """
+        ans = []
+        curr = root
+        while curr:
+            # if left is null, process curr and go right
+            if not curr.left:
+                ans.append(curr.val)
+                curr = curr.right
+            else:
+                prev = curr.left
+                # go right until right is null (no link) or is curr (link exists)
+                while prev.right and prev.right != curr:
+                    prev = prev.right
+                if not prev.right:
+                    # establish link and move left
+                    prev.right = curr
+                    curr = curr.left
+                else:
+                    # remove link and move right
+                    prev.right = None
+                    ans.append(curr.val)
+                    curr = curr.right
+        return ans
 
 
 solver = Solution()
-ans = solver.inorderTraversalFlat(root)
+
+root = Tree([1, None, 2, None, None, 3]).root
+ans = solver.inorderTraversalMorris(root)
 print(ans)
+
+root = Tree([4, 2, 5, 1, 3, None, 6]).root
+print(solver.inorderTraversalMorris(root))
+
+# root = Tree([1, 2, 3, 4, 5, 6]).root
+# ans = solver.inorderTraversalFlat(root)
+# print(ans)

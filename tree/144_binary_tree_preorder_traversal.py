@@ -1,7 +1,4 @@
-import Tree
-treeVals = [1, 2, 3, 4, 5, None, 6, None, None, 7]
-tree = Tree.Tree(treeVals)
-root = tree.root
+from tree import Tree
 
 class Solution(object):
     def preorderTraversal(self, root):
@@ -90,7 +87,40 @@ class Solution(object):
                     cur = cur.right
         return ans
 
+    def preorderTraversalMorris(self, root):
+        """
+        Edge case:
+            when input is null
+            when child node is null
+        """
+        ans = []
+        curr = root
+        while curr:
+            # if left is null, process curr and go right
+            if not curr.left:
+                ans.append(curr.val)
+                curr = curr.right
+            else:
+                prev = curr.left
+                # go right until right is null (no link) or is curr (link exists)
+                while prev.right and prev.right != curr:
+                    prev = prev.right
+                if not prev.right:
+                    # establish link and move left
+                    prev.right = curr
+                    ans.append(curr.val)
+                    curr = curr.left
+                else:
+                    # remove link and move right
+                    prev.right = None
+                    curr = curr.right
+        return ans
 
 
 solver = Solution()
-print(solver.preorderTraversal3(root))
+
+root = Tree([4, 2, 5, 1, 3, None, 6]).root
+print(solver.preorderTraversalMorris(root))
+
+# root = Tree([1, 2, 3, 4, 5, None, 6, None, None, 7]).root
+# print(solver.preorderTraversal3(root))
