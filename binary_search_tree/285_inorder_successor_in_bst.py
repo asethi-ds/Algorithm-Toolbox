@@ -1,8 +1,5 @@
-import Tree
-treeVals = [2, 1, 3]
-tree = Tree.Tree(treeVals)
-root = tree.root
-
+from tree import Tree
+root = Tree.Tree([2, 1, 3]).root
 
 # Definition for a binary tree node.
 # class TreeNode(object):
@@ -22,19 +19,19 @@ class Solution(object):
         stack = []
         found = False
         while stack or cur:
-            if cur:
+            while cur:
                 stack.append(cur)
                 cur = cur.left
-            else:
-                cur = stack.pop()
 
-                if found is True:
-                    return cur
+            cur = stack.pop()
 
-                if cur == p:
-                    found = True
+            if found is True:
+                return cur
 
-                cur = cur.right
+            if cur == p:
+                found = True
+
+            cur = cur.right
         return None
 
 solver = Solution()

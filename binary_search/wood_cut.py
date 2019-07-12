@@ -2,7 +2,7 @@
 [LintCode] 183 Wood Cut
 Description
 Given n pieces of wood with length L[i] (integer array). Cut them into small
-pieces to guarantee you could have equal or more than k pieces with the same
+pieces to guarantee you could have equal or MORE than k pieces with the same
 length. What is the longest length you can get from the n pieces of wood?
 Given L & k, return the maximum length of the small pieces.
 
@@ -32,10 +32,15 @@ def woodCut(arr, k):
     OOOOO...OOXX...XXX
              lr
     Complexity O(N + LogM), N = len(arr), M = max(arr)
+
+    Thought process: change length, see how many equal pieces can get
     """
 
     l, r = 0, max(arr)
+
+    # compute how many pieces of length x we can cut
     count = lambda arr, x: sum(a // x for a in arr)
+
     while l + 1 < r:
         m = (r - l) // 2 + l
         if count(arr, m) == k:

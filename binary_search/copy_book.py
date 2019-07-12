@@ -8,6 +8,7 @@ def count(arr, x, k):
     copier = 1
     tmp = arr[0]
     for page in arr[1:]:
+        # apply constraint here that books assignment is continuous
         if tmp + page > x:
             copier += 1
             tmp = 0

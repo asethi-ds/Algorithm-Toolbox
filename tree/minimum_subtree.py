@@ -2,6 +2,8 @@ from tree import Tree
 
 def countNotes(root):
     """
+    Classic use case: divide & conquer
+    
     Count how many nodes are in binary tree.
     Use divide & conquer.
     """
@@ -30,6 +32,26 @@ class Solution():
                 self.ans = sum
                 self.subtree = node
             return sum
+        helper(root)
+        return self.subtree, self.ans
+
+    def maximumAverageSubtree(self, root):
+        """
+        Node can have negative values. Doesn't affect result.
+        """
+        def helper(node):
+            if node is None: return 0, 0
+
+            sLeft, cLeft = helper(node.left)
+            sRight, cRight = helper(node.right)
+
+            sum = node.val + sLeft + sRight
+            count = 1 + cLeft + cRight
+
+            if sum / count < self.ans:
+                self.ans = sum / count
+                self.subtree = node
+            return sum, count
         helper(root)
         return self.subtree, self.ans
 

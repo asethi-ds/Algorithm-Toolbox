@@ -18,6 +18,7 @@ class BSTIterator(object):
     def __init__(self, root):
         """
         :type root: TreeNode
+        Use in-order traversal to serialize tree
         """
         self.cur = 0
         arr = []

@@ -79,6 +79,30 @@ class Solution(object):
             prev = curr
         return ans
 
+    # using a hash set to remember visited nodes, time O(N), memory O(N)
+    def postorderTraversal(self, root: TreeNode) -> List[int]:
+        if not root:
+            return []
+        post_order = []
+        stack = [root]
+        visited = {root}
+        while stack:
+            top = stack[-1]
+            no_next = True
+            if top.right and top.right not in visited:
+                stack.append(top.right)
+                visited.add(top.right)
+                no_next = False
+            if top.left and top.left not in visited:
+                stack.append(top.left)
+                visited.add(top.left)
+                no_next = False
+            if no_next:
+                post_order.append(top.val)
+                stack.pop()
+
+        return post_order
+
     # modify from pre-order traversal
     def postorderTraversalRecLogic(self, root):
         """
@@ -180,10 +204,35 @@ class Solution(object):
                 stack.append(child)
         return ans
 
+    def postorderTraversalMorris(self, root):
+        ans = []
+        curr = root
+        while curr:
+            # if right is null, process curr and go left
+            if not curr.right:
+                ans.append(curr.val)
+                curr = curr.left
+            else:
+                prev = curr.right
+                # go left until left is null (no link) or is curr (link exists)
+                while prev.left and prev.left != curr:
+                    prev = prev.left
+                if not prev.left:
+                    # establish link and move right
+                    prev.left = curr
+                    ans.append(curr.val)
+                    curr = curr.right
+                else:
+                    # remove link and move left
+                    prev.left = None
+                    curr = curr.left
+        return ans[::-1]
+
 solver = Solution()
 
 root = Tree([4, 2, 3, None, 1]).root
 print(solver.postorderTraversal(root))
+print(solver.postorderTraversalMorris(root))
 
 #       10
 #      /  \

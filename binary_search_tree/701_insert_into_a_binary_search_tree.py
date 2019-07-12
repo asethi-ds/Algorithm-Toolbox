@@ -1,18 +1,15 @@
-# Definition for a binary tree node.
-# class TreeNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-
 class Solution(object):
+    """
+    new value does not exist in the original BST.
+    Multiple BST may be possible.
+    """
     def insertIntoBST(self, root, val):
         """
         :type root: TreeNode
         :type val: int
         :rtype: TreeNode
         """
-        # ONE TIME SUCCESS!
+        # ONE TIME SUCCESS! Not typical recursion
         def insert(node, val):
             if node.val < val:
                 if node.right:
@@ -28,6 +25,7 @@ class Solution(object):
         insert(root, val)
         return root
 
+    # classic recursion, return node to be appended to parent
     def insertIntoBST2(self, root: TreeNode, val: int) -> TreeNode:
         if not root:
             # create a leaf node

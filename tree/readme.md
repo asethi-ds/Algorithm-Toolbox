@@ -174,16 +174,19 @@ def divideConquerTraversal(self, root):
 * Tuple return: binary tree maximum average [[Link](https://www.lintcode.com/problem/subtree-with-maximum-average/description)][[Code](binary_tree_maximum_average.py)].
 * Flatten binary tree to linked list [[Link](https://leetcode.com/problems/flatten-binary-tree-to-linked-list/submissions/)][[Code](114_flatten_binary_tree_to_linked_list.py)]
 * **Lowest common ancestor** [[Link](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/)][[Code](236_lowest_common_ancestor_of_a_binary_tree.py)]
+* **Lowest common ancestor III** [[Link](https://www.lintcode.com/problem/lowest-common-ancestor-iii/)][[Code](lowest_common_ancestor_of_a_binary_tree_iii.py)]
+  - Return null if LCA does not exist.
+  - Return tuple
 * Longest consecutive sequence in tree [[Link](https://leetcode.com/problems/binary-tree-longest-consecutive-sequence/)][[Code](298_binary_tree_longest_consecutive_sequencee.py)]
 * Binary Tree Longest Consecutive Sequence [[Link](https://leetcode.com/problems/binary-tree-longest-consecutive-sequence/)][[Code](298_binary_tree_longest_consecutive_sequencee.py)].
 * Binary Tree Longest Consecutive Sequence II [[Link](https://leetcode.com/problems/binary-tree-longest-consecutive-sequence-ii/)][[Code](549_binary_tree_longest_consecutive_sequence_ii.py)]
 * Path Sum [[Link](https://leetcode.com/problems/path-sum/)][[Code](112_path_sum.py)]
 * Path Sum II [[Link](https://leetcode.com/problems/path-sum-ii)][[Code](113_path_sum_ii.py)]
-* Binary Tree Path Sum II [[Screenshot](assets/binary_tree_path_sum_ii.png)] (no access to LintCode)
+* Binary Tree Path Sum II [[Screenshot](https://github.com/shawlu95/Algorithm-Toolbox/blob/master/tree/assets/binary_tree_path_sum_ii.png)] (no access to LintCode)
   - Must go straight down
   - Every node can be start or end of path
   - At every node, treat it as end note, and loop through every node in the path as possible start node.
   - There are N choose 2 possible paths
-* Binary Tree Path Sum III [[Screenshot](assets/binary_tree_path_sum_iii.png)] (no access to LintCode)
+* Binary Tree Path Sum III [[Screenshot](https://github.com/shawlu95/Algorithm-Toolbox/blob/master/tree/assets/binary_tree_path_sum_iii.png)] (no access to LintCode)
   - May not go straight down
   - Every node can be turning point. Combine every left path to every right path.
