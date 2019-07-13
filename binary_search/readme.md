@@ -53,8 +53,4 @@ T(N) = T(N/2) + O(N) = ... = O(N + N/2 + N/4 + ...) + T(1) ~= O(2N) = O(N)
 x1 x2 | x3 x4 x5 x6
 y1 y2 y3 y4 | y5 y6 y7 y8
               j
-
-pseudocode:
-
-
 ```
