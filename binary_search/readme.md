@@ -47,7 +47,7 @@ T(N) = T(N/2) + O(N) = ... = O(N + N/2 + N/4 + ...) + T(1) ~= O(2N) = O(N)
   - make `x` the shorter array
   - Use infinity to handle empty partition
   - In my code, `i, j` points to first elements in right partitions
-
+ 
 ```   
         i
 x1 x2 | x3 x4 x5 x6
